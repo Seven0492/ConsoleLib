@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Diagnostics;
-
-namespace ConsoleLib;
+﻿namespace ConsoleLib;
 
 public static class ConsoleLib
 {
@@ -10,7 +7,6 @@ public static class ConsoleLib
     const ConsoleColor COLOR_INPUT  = ConsoleColor.Green;
     const ConsoleColor COLOR_PREFIX = ConsoleColor.White;
     const ConsoleColor FLASHY_COLOR = ConsoleColor.Cyan;
-    const bool SHOW_EMPTY_LINE_AFTER_READ = true;
     
     // Methods
     #region DisplayText
@@ -88,6 +84,46 @@ public static class ConsoleLib
 
     #region ReadText
 
+    /// <summary>
+    /// Read a line of text in the console
+    /// </summary>
+    /// <param name="prefix">String written before user input</param>
+    /// <returns>User input</returns>
+    public static string ReadText(string prefix)
+    {
+        // Variable
+        string? entry;
+
+        // Display prefix
+        Console.ForegroundColor = COLOR_PREFIX;
+        Console.Write(prefix);
+
+        // Get user input
+        Console.ForegroundColor = COLOR_INPUT;
+
+        if ((entry = Console.ReadLine()) is null)
+        {
+            return "";
+        }
+
+        Console.ForegroundColor = COLOR_BASE;
+
+        // Return user input
+        return entry;
+    }
+
+    /// <summary>
+    /// Read a line of text in the console
+    /// </summary>
+    /// <param name="textBeforePrefix"></param>
+    /// <param name="prefix">String written before user input</param>
+    /// <returns>User input</returns>
+    public static string ReadText(string textBeforePrefix, string prefix)
+    {
+        // throw NotImplementedException;
+
+        return "";
+    }
 
 
     #endregion
