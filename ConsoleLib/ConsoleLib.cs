@@ -1,4 +1,7 @@
-﻿namespace ConsoleLib;
+﻿using System.Collections;
+using System.Diagnostics;
+
+namespace ConsoleLib;
 
 public static class ConsoleLib
 {
@@ -45,6 +48,40 @@ public static class ConsoleLib
         Console.WriteLine( separator + Environment.NewLine );
 
         Console.ForegroundColor = COLOR_BASE;
+    }
+
+    /// <summary>
+    /// Displays a list of string elements in the console
+    /// </summary>
+    /// <param name="list">The list of string elements</param>
+    /// <param name="indexing">Whether to index list elements</param>
+    public static void DisplayList(IReadOnlyList<string> list, bool indexing = false)
+    {
+        switch (indexing)
+        {
+            // Display with index
+            case true:
+                // Avoid ArgumentOutOfRangeException
+                if (list.Count is 0) return;
+                
+                foreach (int index in Enumerable.Range(0, list.Count - 1))
+                {
+                    Console.WriteLine( $"{index} - {list[index]}" );
+                }
+                
+                break;
+            // Display without index
+            case false:
+                foreach (string entry in list)
+                {
+                    Console.WriteLine(entry);
+                }
+                
+                break;
+        }
+        
+        // Add following empty line
+        Console.WriteLine();
     }
 
     #endregion
