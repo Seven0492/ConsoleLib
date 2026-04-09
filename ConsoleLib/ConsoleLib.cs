@@ -6,13 +6,13 @@ public static class ConsoleLib
     const ConsoleColor COLOR_BASE   = ConsoleColor.Gray;
     const ConsoleColor COLOR_INPUT  = ConsoleColor.Green;
     const ConsoleColor COLOR_PREFIX = ConsoleColor.White;
-    const ConsoleColor FLASHY_COLOR = ConsoleColor.Cyan;
+    const ConsoleColor COLOR_FLASHY = ConsoleColor.Cyan;
     
     // Methods
     #region DisplayText
 
     /// <summary>
-    /// Displays an header in the console
+    /// Displays a header in the console
     /// </summary>
     /// <param name="title">The title of the header</param>
     /// <param name="separatorChar">The character used to separate the header from ordinary text</param>
@@ -22,7 +22,7 @@ public static class ConsoleLib
         string title,
         char separatorChar = '*',
         int? separatorCharCount = null,
-        ConsoleColor color = FLASHY_COLOR
+        ConsoleColor color = COLOR_FLASHY
     )
     {
         // Sanitize input parameters
@@ -58,7 +58,11 @@ public static class ConsoleLib
             // Display with index
             case true:
                 // Avoid ArgumentOutOfRangeException
-                if (list.Count is 0) return;
+                if (list.Count is 0)
+                {
+                    Console.WriteLine();
+                    return;
+                };
                 
                 foreach (int index in Enumerable.Range(0, list.Count - 1))
                 {
