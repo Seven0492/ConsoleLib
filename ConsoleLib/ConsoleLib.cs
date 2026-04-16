@@ -1,6 +1,6 @@
 ﻿namespace ConsoleLib;
 
-public static class ConsoleLib
+public static class Cslib
 {
     // Constants
     const ConsoleColor COLOR_BASE   = ConsoleColor.Gray;
@@ -93,7 +93,7 @@ public static class ConsoleLib
     /// </summary>
     /// <param name="prefix">String written before user input</param>
     /// <returns>User input</returns>
-    public static string ReadText(string prefix)
+    public static string ReadText(string prefix = " ==> ")
     {
         // Variable
         string? entry;
@@ -122,7 +122,7 @@ public static class ConsoleLib
     /// <param name="textBeforePrefix"></param>
     /// <param name="prefix">String written before user input</param>
     /// <returns>User input</returns>
-    public static string ReadText(string textBeforePrefix, string prefix)
+    public static string ReadText(string textBeforePrefix, string prefix = " ==> ")
     {
         // throw NotImplementedException;
 
@@ -140,7 +140,32 @@ public static class ConsoleLib
 
     #region ReadInt
 
+    public static int ReadIntWithinBounds(
+        int lowerBound, int upperBound,
+        string prefix = " ==> ", string errorMessage = "Error : Invalid whole number.")
+    {
+        // Variable
+        string input;
+        int number;
 
+        bool success;
+
+        do
+        {
+            input = ReadText(prefix);
+
+            success = int.TryParse(input, out number);
+
+            if (!success)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(errorMessage);
+                Console.ForegroundColor = COLOR_BASE;
+            }
+        } while (!success);
+
+        return number;
+    }
 
     #endregion
 
