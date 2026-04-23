@@ -40,7 +40,7 @@ public static class Cslib
         Console.ForegroundColor = color;
 
         Console.WriteLine( separator );
-        Console.WriteLine( title.PadLeft( ((int)separatorCharCount - title.Length) / 2 ) );
+        Console.WriteLine( title.PadLeft( ((int)separatorCharCount - title.Length) / 2, ' ' ) );
         Console.WriteLine( separator + Environment.NewLine );
 
         Console.ForegroundColor = COLOR_BASE;
@@ -64,9 +64,9 @@ public static class Cslib
                     return;
                 };
                 
-                foreach (int index in Enumerable.Range(0, list.Count - 1))
+                foreach (int index in Enumerable.Range(0, list.Count))
                 {
-                    Console.WriteLine( $"{index} - {list[index]}" );
+                    Console.WriteLine( $"{index}. {list[index]}" );
                 }
                 
                 break;
@@ -146,7 +146,7 @@ public static class Cslib
     {
         // Variable
         string input;
-        int number;
+        int number = lowerBound - 1;
 
         bool success;
 
@@ -155,6 +155,7 @@ public static class Cslib
             input = ReadText(prefix);
 
             success = int.TryParse(input, out number);
+            success = success && number <= upperBound && number >= lowerBound;
 
             if (!success)
             {
