@@ -141,7 +141,9 @@ public static class Cslib
         int index = 0;
 
         // Show prefix
+        Console.ForegroundColor = COLOR_PREFIX;
         Console.Write(prefix);
+        Console.ForegroundColor = COLOR_INPUT;
 
         while (index < charCount)
         {
@@ -149,6 +151,8 @@ public static class Cslib
 
             index++;
         }
+
+        Console.ForegroundColor = COLOR_BASE;
 
         if (newlineAfterRead) Console.WriteLine();
 
@@ -167,7 +171,7 @@ public static class Cslib
 
     public static int ReadIntWithinBounds(
         int lowerBound, int upperBound,
-        string prefix = DEFAULT_PREFIX, string errorMessage = "Erreur : nombre entier invalide.")
+        string prefix = DEFAULT_PREFIX, string errorMessage = "Erreur : choix entier invalide.")
     {
         // Variable
         string input;
@@ -210,21 +214,15 @@ public static class Cslib
         string input;
         bool result = falseByDefault ? false : true;
 
-        // Show prefix
-        Console.Write(prefix);
-
         // Read the boolean
         input = ReadTextLimited(1, true, prefix).ToLower();
 
         // Interpret according to the falseByDefault parameter
         if (falseByDefault)
-        {
             if (input == charTrue.ToString().ToLower()) result = true;
-        }
         else
-        {
-            if (input == charFalse.ToString().ToLower()) result = false;
-        }
+            if (input == charFalse.ToString().ToLower())
+                result = false;
 
         return result;
     }
