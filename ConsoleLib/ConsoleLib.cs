@@ -67,7 +67,7 @@ public static class Cslib
                 
                 foreach (int index in Enumerable.Range(0, list.Count))
                 {
-                    Console.WriteLine( $"{index}. {list[index]}" );
+                    Console.WriteLine( $"{index + 1}. {list[index]}" );
                 }
                 
                 break;
