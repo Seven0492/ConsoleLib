@@ -10,12 +10,7 @@ public static class CsErrorSystem
     public static void ShowError(string message)
     {
         // Variable
-        ConsoleColor initialColor = Console.ForegroundColor;
-
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(message);
-
-        Console.ForegroundColor = initialColor;
+        Cslib.DisplayColoredMessage(message, ConsoleColor.Red);
     }
 
     public static void ShowCriticalError(string smallErrorDescription, bool inFrench = false)

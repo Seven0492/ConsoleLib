@@ -13,6 +13,28 @@ public static class Cslib
     #region DisplayText
 
     /// <summary>
+    /// Displays a message in color
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="color"></param>
+    public static void DisplayColoredMessage(string message, ConsoleColor color, bool newlineAtEnd = false)
+    {
+        // Save initial color
+        ConsoleColor initialColor = Console.ForegroundColor;
+
+        // Consider newline
+        if (newlineAtEnd)
+            message = message + Environment.NewLine;
+
+        // Display
+        Console.ForegroundColor = color;
+        Console.Write(message);
+
+        // Reset color
+        Console.ForegroundColor = initialColor;
+    }
+
+    /// <summary>
     /// Displays a header in the console
     /// </summary>
     /// <param name="title">The title of the header</param>
