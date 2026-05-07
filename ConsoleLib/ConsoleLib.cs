@@ -15,23 +15,28 @@ public static class Cslib
     /// <summary>
     /// Displays a message in color
     /// </summary>
-    /// <param name="message"></param>
-    /// <param name="color"></param>
-    public static void DisplayColoredMessage(string message, ConsoleColor color, bool newlineAtEnd = false)
+    /// <param name="message">The string message</param>
+    /// <param name="foregroundColor">The foreground color</param>
+    /// <param name="backgroundColor">The background color</param>
+    /// <param name="newlineAtEnd">Whether to display a newline at the end of the message</param>
+    public static void DisplayColoredMessage(string message, ConsoleColor foregroundColor, ConsoleColor backgroundColor, bool newlineAtEnd = false)
     {
         // Save initial color
-        ConsoleColor initialColor = Console.ForegroundColor;
+        ConsoleColor initialForegroundColor = Console.ForegroundColor;
+        ConsoleColor initialBackgroundColor = Console.BackgroundColor;
 
         // Consider newline
         if (newlineAtEnd)
             message = message + Environment.NewLine;
 
         // Display
-        Console.ForegroundColor = color;
+        Console.ForegroundColor = foregroundColor;
+        Console.BackgroundColor = backgroundColor;
         Console.Write(message);
 
         // Reset color
-        Console.ForegroundColor = initialColor;
+        Console.ForegroundColor = initialForegroundColor;
+        Console.BackgroundColor = initialBackgroundColor;
     }
 
     /// <summary>
