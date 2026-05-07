@@ -9,8 +9,7 @@ public static class CsErrorSystem
     /// <param name="message">The message to show</param>
     public static void ShowError(string message)
     {
-        // Variable
-        Cslib.DisplayColoredMessage(message, ConsoleColor.Red, true);
+        Cslib.DisplayColoredMessage(message, ConsoleColor.Red, Console.BackgroundColor, true);
     }
 
     public static void ShowCriticalError(string smallErrorDescription, bool inFrench = false)
